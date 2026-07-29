@@ -9,7 +9,7 @@ This repository contains Python automation projects developed to automate common
 - Supports scheduled email delivery.
 - Uses App Password authentication.
 
-### 💾 Automatic Disk Sanitizer
+### 💾 Auto Disk Cleaner
 - Identifies and removes unwanted files to help free disk space.
 - Automates cleanup tasks.
 
