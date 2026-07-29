@@ -1,0 +1,5 @@
+# Gmail_Mail_Sender - dependencies
+# smtplib, email.message, time, sys are part of Python's standard library
+
+schedule==1.2.2
+
