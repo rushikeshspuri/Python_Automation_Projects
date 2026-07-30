@@ -32,12 +32,12 @@ operation at a user-defined interval (in minutes), until manually stopped.
 
 - **Python version:** 3.8 or higher
 - **Required Python libraries:**
-  - `schedule` (install via `pip install schedule`)
-  - `hashlib`, `os`, `sys`, `time`, `datetime`, `smtplib`, `email` — all part of
-    the Python standard library, no installation needed
+- `schedule` (install via `pip install schedule`)
+- `hashlib`, `os`, `sys`, `time`, `datetime`, `smtplib`, `email` — all part of
+  the Python standard library, no installation needed
 - **Internet connection** — required for sending the log-report email
 - **Gmail App Password** — required for SMTP authentication (a regular Gmail
-  account password will not work; see Section 11)
+account password will not work; see Section 11)
 
 ## 5. Project Structure
 
@@ -60,10 +60,10 @@ DuplicateFileRemoval/
 
 **Purpose of each module:**
 - `Auto_Disk_Cleaner.py` reads and validates command-line arguments, creates
-  the log directory, runs the cleaning cycle once immediately, then schedules
-  it to repeat automatically.
+the log directory, runs the cleaning cycle once immediately, then schedules
+it to repeat automatically.
 - `DuplicateFileRemovalUtils.py` contains no execution logic of its own — it
-  only defines functions that `Auto_Disk_Cleaner.py` imports and calls.
+only defines functions that `Auto_Disk_Cleaner.py` imports and calls.
 
 ## 6. Command-Line Options
 
@@ -112,16 +112,16 @@ python3 Auto_Disk_Cleaner.py <AbsoluteDirectoryPath> <TimeIntervalInMinutes> <Re
 ## 10. Log-File Information
 
 - Log files are stored inside the `DiskCleanerLog/` folder, which is created
-  automatically in the current working directory if it doesn't already exist.
+automatically in the current working directory if it doesn't already exist.
 - Each run generates a **new** log file, named using the exact date and time
-  the run started, so previous logs are never overwritten:
-  ```
-  DuplicateRemoveLog_30_07_2026_17_11_02.log
-  ```
+the run started, so previous logs are never overwritten:
+```
+DuplicateRemoveLog_30_07_2026_17_11_02.log
+```
 - Each log file contains: starting time, directory scanned, empty-file cleanup
-  details, duplicate-detection details (checksums, kept file, deleted files),
-  total files scanned, total duplicates found/deleted, completion time, and
-  the email delivery status.
+details, duplicate-detection details (checksums, kept file, deleted files),
+total files scanned, total duplicates found/deleted, completion time, and
+the email delivery status.
 
 ## 11. Email Configuration
 
@@ -151,22 +151,22 @@ AppPassword = os.environ.get("GMAIL_APP_PASSWORD")
 ## 12. Important Notes
 
 - **Deleted files may not be recoverable.** Once a duplicate file is removed
-  with `os.remove()`, it does not go to a recycle bin — it is permanently
-  deleted from disk.
+with `os.remove()`, it does not go to a recycle bin — it is permanently
+deleted from disk.
 - **Test on a sample directory first.** Before running this against important
-  data, create a test folder with a few intentional duplicate files and
-  confirm the results match your expectations.
+data, create a test folder with a few intentional duplicate files and
+confirm the results match your expectations.
 - **Email passwords should never be hard-coded** in a script that will be
-  committed to version control. Use an environment variable or a
-  `.gitignore`-excluded config file instead.
+committed to version control. Use an environment variable or a
+`.gitignore`-excluded config file instead.
 - **The first file in each duplicate group is always preserved** — the
-  remaining files with the same checksum are the ones deleted.
+remaining files with the same checksum are the ones deleted.
 - **Files are only considered duplicates when their MD5 checksums are
-  identical** — filenames are never used to determine duplication, since two
-  files can have completely different names but identical content (or the
-  same name with different content).
+identical** — filenames are never used to determine duplication, since two
+files can have completely different names but identical content (or the
+same name with different content).
 - The script runs indefinitely once started; press `Ctrl+C` in the terminal
-  to stop the scheduler gracefully.
+to stop the scheduler gracefully.
 
 ## Author
 
